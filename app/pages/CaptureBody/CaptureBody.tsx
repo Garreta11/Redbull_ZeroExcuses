@@ -38,7 +38,7 @@ const CaptureBody = () => {
       }, 1000);
       return () => clearTimeout(timer); // Clean up the timer
     } else {
-      // setErrorMessage(true)
+      setErrorMessage(true)
     }
   }, [countToDetect])
 

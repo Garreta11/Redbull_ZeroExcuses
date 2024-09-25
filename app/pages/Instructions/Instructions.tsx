@@ -31,7 +31,7 @@ const Instructions = () => {
             weight="regular"
             className={styles.instructions__text__headline}
           >
-            Let's do some fitness exercises and push it from 0 to 100:
+            Let&apos;s do some fitness exercises and push it from 0 to 100:
           </CosmosText>
           <ul className={styles.instructions__text__list}>
             <li className={styles.instructions__text__list__item}>
