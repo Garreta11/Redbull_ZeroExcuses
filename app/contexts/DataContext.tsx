@@ -1,8 +1,9 @@
 'use client'
 // contexts/GlobalContext.tsx
 import React, { createContext, useState, ReactNode, FC } from 'react';
+import { ExerciseType } from '@/app/data/exercises';
 
-export interface SpriteData {
+/* export interface SpriteData {
   spriteUrl: string;
   frameWidth: number;
   frameHeight: number;
@@ -16,7 +17,7 @@ export interface ExerciseType {
   name: string;
   exercise: SpriteData;
   extraRound: SpriteData; // Optional if some exercises may not have extra rounds
-}
+} */
 
 // Define the shape of the context value
 interface DataContextType  {
@@ -52,8 +53,7 @@ const initialExerciseState: ExerciseType = {
     frameHeight: 0,
     frameCount: 0,
     frameDuration: 0,
-    maxRepetitions: 0,
-    extraRoundStart: 0,
+    extraRoundRepetitions: 0,
   }
 };
 
