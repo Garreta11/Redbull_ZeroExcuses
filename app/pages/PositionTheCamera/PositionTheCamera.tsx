@@ -20,23 +20,24 @@ const PositionTheCamera = () => {
 
   return (
     <div className={styles.positionTheCamera}>
-      <h2>Position the Camera</h2>
-      <Image className={styles.positionTheCamera__image} src='/images/position-camera.png' alt='position the camera image' width={307} height={325} />
+      <h2 className={styles.positionTheCamera__title}>Position the Camera</h2>
+      <Image className={styles.positionTheCamera__image} src='/images/position-camera.png' alt='position the camera image' width={300} height={317} />
       <CosmosText
         kind="normal"
         size="small"
         spacing="none"
         tag="p"
         weight="regular"
+        className={styles.positionTheCamera__text}
       >
-        Position your device on the ground or a shelf: Make sure your whole body is visible within the frame and that you are against a solid, clear background.
+        Position your device on the ground or a shelf:
       </CosmosText>
       <CosmosButton
         onClick={handlePlay}
         kind='primary'
         size='small'
       >
-        Next
+        Start Scan
       </CosmosButton>
     </div>
   );

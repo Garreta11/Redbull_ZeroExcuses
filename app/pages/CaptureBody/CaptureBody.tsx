@@ -17,6 +17,7 @@ const CaptureBody = () => {
 
   useEffect(() => {
     if (allKeypointsInside) {
+      setCountToDetect(10)
       if (countSuccess > 0) {
         const timer = setTimeout(() => {
           setCountSuccess(countSuccess - 1);
@@ -37,7 +38,7 @@ const CaptureBody = () => {
       }, 1000);
       return () => clearTimeout(timer); // Clean up the timer
     } else {
-      setErrorMessage(true)
+      // setErrorMessage(true)
     }
   }, [countToDetect])
 

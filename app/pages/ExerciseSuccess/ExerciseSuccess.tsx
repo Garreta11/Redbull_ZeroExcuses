@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '@/app/contexts/DataContext';
 import styles from './ExerciseSuccess.module.scss'
 import Character from "@/app/components/Character/Character"
@@ -23,6 +23,10 @@ const victory: VictoryType = {
 }
 
 const ExerciseSuccess = () => {
+  
+  const [count, setCount] = useState<number>(5);
+
+
   const context = useContext(DataContext);
   // Check if context is undefined
   if (!context) {
@@ -35,6 +39,17 @@ const ExerciseSuccess = () => {
       setPage('extraRound')
     }
   }, [repetitions])
+
+  useEffect(() => {
+    if (count > 0) {
+      const timer = setTimeout(() => {
+        setCount(count - 1);
+      }, 1000);
+      return () => clearTimeout(timer); // Clean up the timer
+    } else {
+      setPage('end')
+    }
+  }, [count])
 
   return (
     <div className={styles.succeed}>

@@ -1,11 +1,7 @@
-.welcome {
+.end {
   text-align: center;
   height: 100%;
   padding: 54px 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 
   border-radius: var(--border-radius);
 
@@ -14,8 +10,8 @@
   background-position: bottom;
   background-repeat: no-repeat;
 
-  &__text {
-    width: 80%;
-    margin: 0 auto;
+  &__image {
+    width: 100%;
+    height: auto;
   }
 }

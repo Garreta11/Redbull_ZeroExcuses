@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styles from './Instructions.module.scss';
 import { DataContext } from '@/app/contexts/DataContext';
 import { CosmosButton, CosmosText } from "@cosmos/web/react";
+import Image from 'next/image';
 
 const Instructions = () => {
 
@@ -28,52 +29,45 @@ const Instructions = () => {
             spacing="none"
             tag="p"
             weight="regular"
+            className={styles.instructions__text__headline}
           >
-            When you log in every day:
+            Let's do some fitness exercises and push it from 0 to 100:
           </CosmosText>
           <ul className={styles.instructions__text__list}>
-            <li>
+            <li className={styles.instructions__text__list__item}>
+              <Image src='/images/phone.png' alt='photo to indicate motion capturing' width={50} height={50} />
               <CosmosText
                 kind="normal"
-                size="small"
+                size="medium"
                 spacing="none"
                 tag="p"
-                weight="regular"
+                weight="bold"
               >
-                Scan your body using our motion capture feature
+                Setup Motion Capturing
               </CosmosText>
             </li>
-            <li>
+            <li className={styles.instructions__text__list__item}>
+              <Image src='/images/weight.png' alt='photo to indicate motion capturing' width={50} height={50} />
               <CosmosText
                 kind="normal"
-                size="small"
+                size="medium"
                 spacing="none"
                 tag="p"
-                weight="regular"
+                weight="bold"
               >
-                Work out with us and complete the daily set!
+                Perform the exercises
               </CosmosText>
             </li>
-            <li>
+            <li className={styles.instructions__text__list__item}>
+              <Image src='/images/hand.png' alt='photo to indicate motion capturing' width={50} height={50} />
               <CosmosText
                 kind="normal"
-                size="small"
+                size="medium"
                 spacing="none"
                 tag="p"
-                weight="regular"
+                weight="bold"
               >
-                Earn more points with an extra round ... or not!
-              </CosmosText>
-            </li>
-            <li>
-              <CosmosText
-                kind="normal"
-                size="small"
-                spacing="none"
-                tag="p"
-                weight="regular"
-              >
-                Share your skills with us and unique prizes!
+                Go for the extra round for additional points.
               </CosmosText>
             </li>
           </ul>

@@ -6,8 +6,6 @@ import Stats from 'stats.js';
 import { DataContext } from '../../contexts/DataContext';
 import { useRef, useState, useEffect, useCallback, useContext } from "react";
 import { loadMoveNetModel, detectPose } from "@/app/utils/movenet";
-// import { CosmosSpinner } from "@cosmos/web/react";
-// import useDeviceType from '@/app/hooks/useDeviceType';
 
 // Interface declarations
 interface Keypoint {
@@ -20,12 +18,6 @@ interface Pose {
   keypoints: Keypoint[];
   score: number;
 }
-
-/* interface VideoContraintsType {
-  width: number,
-  height: number,
-  facingMode: string
-} */
 
 // Define the skeleton pairs
 const skeleton = [
@@ -53,11 +45,11 @@ const CameraWrapper: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const statsRef = useRef<Stats | null>(null);
 
+
   const [poses, setPoses] = useState<Pose[]>([]);
   const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false);
   const [keypointsInside, setKeypointsInside] = useState<boolean[]>(Array(17).fill(false));
   const [loader, setLoader] = useState<boolean>(true)
-  //const [videoConstraints, setVideoConstraints] = useState<VideoContraintsType>({width: 640, height: 480, facingMode: 'user'})
 
   const context = useContext(DataContext);
   // Check if context is undefined
@@ -103,23 +95,6 @@ const CameraWrapper: React.FC = () => {
     };
   }, []);
 
-/*   // check mobile
-  useEffect(() => {
-    if (isMobile) {
-      setVideoConstraints({
-        width: window.innerWidth,
-        height: window.innerHeight,
-        facingMode: 'user'
-      })
-    } else {
-      setVideoConstraints({
-        width: 640,
-        height: 480,
-        facingMode: "user"
-      })
-    }
-  }, [isMobile]) */
-
   useEffect(() => {
     const loadModel = async () => {
       await loadMoveNetModel();
@@ -155,8 +130,9 @@ const CameraWrapper: React.FC = () => {
     if (!ctx) return;
 
     if (!webcam.video) return;
-    canvas.width = webcam.video.width;
-    canvas.height = webcam.video.height;
+
+    canvas.width = videoConstraints.width
+    canvas.height = videoConstraints.height
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(webcam.video, 0, 0, canvas.width, canvas.height);
@@ -242,7 +218,6 @@ const CameraWrapper: React.FC = () => {
         <Webcam
           ref={webcamRef}
           className={styles.camera__webcam}
-          audio={false}
           height={videoConstraints.height}
           width={videoConstraints.width}
           videoConstraints={videoConstraints}
