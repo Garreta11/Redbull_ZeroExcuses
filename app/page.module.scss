@@ -1,0 +1,20 @@
+@import 'breakpoints.scss';
+
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(/images/desktop-background.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @include mobile-query {
+    padding: 0px;
+  }
+}

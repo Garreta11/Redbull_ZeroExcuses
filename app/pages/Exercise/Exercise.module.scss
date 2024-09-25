@@ -1,0 +1,14 @@
+.exercise {
+  height: 100%;
+  padding: 85px 28px;
+  background-image: url('/images/backgrounds/background.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  border-radius: var(--border-radius);
+
+  &__title {
+    text-align: center;
+  }
+}

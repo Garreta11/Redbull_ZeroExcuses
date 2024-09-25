@@ -1,0 +1,13 @@
+.positionTheCamera {
+  text-align: center;
+  height: 100%;
+  padding: 85px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &__image {
+    margin: 0 auto;
+  }
+}

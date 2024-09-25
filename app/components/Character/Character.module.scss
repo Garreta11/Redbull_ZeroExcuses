@@ -1,0 +1,30 @@
+.character {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  &__sprite {
+    scale: 0.8;
+    transform-origin: bottom;
+  }
+
+  &__controllers {
+    position: absolute;
+    width: 100%;
+    bottom: 5px;
+    right: 5px;
+    text-align: center;
+    
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+
+}

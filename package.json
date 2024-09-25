@@ -1,0 +1,36 @@
+{
+  "name": "redbullZeroExcuses",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@cosmos/web": "^8.5.0",
+    "@tensorflow-models/pose-detection": "^2.1.3",
+    "@tensorflow/tfjs-backend-wasm": "^4.21.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.21.0",
+    "@tensorflow/tfjs-converter": "^4.21.0",
+    "@tensorflow/tfjs-core": "^4.21.0",
+    "next": "14.2.8",
+    "react": "^18",
+    "react-camera-pro": "^1.4.0",
+    "react-dom": "^18",
+    "react-webcam": "^7.2.0",
+    "sass": "^1.78.0",
+    "stats.js": "^0.17.0"
+  },
+  "devDependencies": {
+    "@cosmos/foundation": "^4.5.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/stats.js": "^0.17.3",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.8",
+    "typescript": "^5"
+  }
+}

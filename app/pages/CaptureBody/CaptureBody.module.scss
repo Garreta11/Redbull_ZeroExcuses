@@ -1,0 +1,53 @@
+.captureBody {
+  text-align: center;
+  height: 100%;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  border-radius: var(--border-radius);
+
+  &__error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    &__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.7;
+      border-radius: var(--border-radius);
+    }
+    &__popup {
+      position: absolute;
+      width: 289px;
+      height: fit-content;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 8px;
+      padding: 35px 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      h4 {
+        color: var(--black);
+        text-transform: uppercase;
+        font-size: var(--size-subtitle);
+      }
+    }
+  }
+}
