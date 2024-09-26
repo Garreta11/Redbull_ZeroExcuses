@@ -19,7 +19,7 @@ const Character: React.FC<SpriteAnimationProps> = ({imageUrl, frameWidth, frameH
   if (!context) {
     throw new Error('Character must be used within a DataProvider');
   }
-  const { performancePercentage, repetitions } = context;
+  const {repetitions } = context;
 
 
   const [currentFrame, setCurrentFrame] = useState(0);
@@ -66,31 +66,6 @@ const Character: React.FC<SpriteAnimationProps> = ({imageUrl, frameWidth, frameH
       }
     };
   }, [isPlaying, frameCount, frameDuration]);
-
-  /*
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(() => {
-        setCurrentFrame((prevFrame) => (prevFrame + 1) % frameCount);
-      }, frameDuration);
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    }
-    
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [isPlaying, frameCount, frameDuration]);
-  */
-
-  useEffect(() => {
-    const cf = Math.round((performancePercentage * (frameCount - 1)) / 100);
-    setCurrentFrame(cf)
-  }, [performancePercentage])
 
   return (
     <div className={styles.character}>

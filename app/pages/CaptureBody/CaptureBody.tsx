@@ -39,6 +39,7 @@ const CaptureBody = () => {
       return () => clearTimeout(timer); // Clean up the timer
     } else {
       setErrorMessage(true)
+      setPage('getReady')
     }
   }, [countToDetect])
 

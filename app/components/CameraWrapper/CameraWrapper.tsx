@@ -1,4 +1,3 @@
-
 'use client'
 import styles from './CameraWrapper.module.scss'
 import Webcam from "react-webcam";
@@ -56,7 +55,7 @@ const CameraWrapper: React.FC = () => {
   if (!context) {
     throw new Error('Character must be used within a DataProvider');
   }
-  const { page, setRepetitions, allKeypointsInside, setAllKeypointsInside } = context
+  const { page, repetitions, setRepetitions, allKeypointsInside, setAllKeypointsInside } = context
 
   const videoConstraints = {
     width: 640,
@@ -71,15 +70,32 @@ const CameraWrapper: React.FC = () => {
 
       const video = webcamRef.current.video as HTMLVideoElement;
       // const detectedPoses = await detectPose(video) as Pose[];
-      const { poses: detectedPoses, counter: r, percentage: p } = await detectPose(video);
+      const { poses: detectedPoses, counter: r} = await detectPose(video);
       setPoses(detectedPoses as Pose[]);
-      setRepetitions(r);
+      // setRepetitions(r);
       setLoader(false)
-      console.log(p)
+      console.log(r)
 
       if (statsRef.current) statsRef.current.end()
     }
   }, [isModelLoaded]);
+
+  // SPACEBAR REPETITIONS FAKE
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        const r = repetitions + 1
+        console.log('space', r)
+        setRepetitions(r);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [repetitions, setRepetitions])
 
   // Initialize stats.js
   useEffect(() => {

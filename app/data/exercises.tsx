@@ -7,7 +7,6 @@ export interface ExercData {
   frameCount: number;
   frameDuration: number;
   maxRepetitions: number;
-  extraRoundStart: number;
 }
 export interface ExtraRoundData {
   spriteUrl: string;
@@ -33,8 +32,7 @@ export const exercises: ExerciseType[] = [
       frameHeight: 633,
       frameCount: 9,
       frameDuration: 100,
-      maxRepetitions: 3,
-      extraRoundStart: 2,
+      maxRepetitions: 8,
     },
     extraRound: {
       spriteUrl: './sprites/squats/ZERO_Sprite_Squat_ExtraRound.png',
@@ -42,7 +40,7 @@ export const exercises: ExerciseType[] = [
       frameHeight: 633,
       frameCount: 9,
       frameDuration: 100,
-      extraRoundRepetitions: 3,
+      extraRoundRepetitions: 2,
     },
   },
   {
@@ -54,7 +52,6 @@ export const exercises: ExerciseType[] = [
       frameCount: 9,
       frameDuration: 100,
       maxRepetitions: 3,
-      extraRoundStart: 2,
     },
     extraRound: {
       spriteUrl: './sprites/squats/ZERO_Sprite_Squat_ExtraRound.png',

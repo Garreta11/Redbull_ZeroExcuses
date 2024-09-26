@@ -24,7 +24,7 @@ const victory: VictoryType = {
 
 const ExerciseSuccess = () => {
   
-  const [count, setCount] = useState<number>(5);
+  const [count, setCount] = useState<number>(10);
 
 
   const context = useContext(DataContext);
@@ -35,7 +35,7 @@ const ExerciseSuccess = () => {
   const { selectedExercise, repetitions, setPage } = context
 
   useEffect(() => {
-    if (repetitions > selectedExercise.exercise.extraRoundStart) {
+    if (repetitions > selectedExercise.exercise.maxRepetitions) {
       setPage('extraRound')
     }
   }, [repetitions])
