@@ -58,8 +58,6 @@ const CameraWrapper: React.FC = () => {
   const { page, repetitions, setRepetitions, allKeypointsInside, setAllKeypointsInside } = context
 
   const videoConstraints = {
-    width: 640,
-    height: 480,
     facingMode: "user", // you can also set it to "environment" for back camera on mobile devices
   };
 
@@ -147,8 +145,10 @@ const CameraWrapper: React.FC = () => {
 
     if (!webcam.video) return;
 
-    canvas.width = videoConstraints.width
-    canvas.height = videoConstraints.height
+    canvas.width = webcam.video.videoWidth
+    canvas.height = webcam.video.videoHeight
+
+    console.log(webcam.video.videoWidth, webcam.video.videoHeight)
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(webcam.video, 0, 0, canvas.width, canvas.height);
@@ -234,8 +234,8 @@ const CameraWrapper: React.FC = () => {
         <Webcam
           ref={webcamRef}
           className={styles.camera__webcam}
-          height={videoConstraints.height}
-          width={videoConstraints.width}
+          height='100%'
+          width='100%'
           videoConstraints={videoConstraints}
         />
 
