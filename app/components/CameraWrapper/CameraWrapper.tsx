@@ -1,11 +1,11 @@
 'use client'
 import styles from './CameraWrapper.module.scss'
+import Script from 'next/script';
 import Webcam from "react-webcam";
 import Stats from 'stats.js';
 import { DataContext } from '../../contexts/DataContext';
 import { useRef, useState, useEffect, useCallback, useContext } from "react";
-import { loadMoveNetModel, detectPose } from "@/app/utils/movenet";
-
+import { loadMoveNetModel, detectPose, loadNeuralNetwork, classifyPose, keyPressed } from "@/app/utils/movenet";
 // Interface declarations
 interface Keypoint {
   x: number;
@@ -47,8 +47,10 @@ const CameraWrapper: React.FC = () => {
 
   const [poses, setPoses] = useState<Pose[]>([]);
   const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false);
+  const [isNeuralNetworkLoaded, setIsNeuralNetworkLoaded] = useState<boolean>(false);
   const [keypointsInside, setKeypointsInside] = useState<boolean[]>(Array(17).fill(false));
   const [loader, setLoader] = useState<boolean>(true)
+  const [loaded, setLoaded] = useState<boolean>(false)
 
   const context = useContext(DataContext);
   // Check if context is undefined
@@ -62,7 +64,7 @@ const CameraWrapper: React.FC = () => {
   };
 
   const detectWebcamPose = useCallback(async () => {
-    if (webcamRef.current && webcamRef.current.video?.readyState === 4 && isModelLoaded) {
+    if (webcamRef.current && webcamRef.current.video?.readyState === 4 && isModelLoaded && isNeuralNetworkLoaded) {
 
       if (statsRef.current) statsRef.current.begin()
 
@@ -70,22 +72,23 @@ const CameraWrapper: React.FC = () => {
       // const detectedPoses = await detectPose(video) as Pose[];
       const { poses: detectedPoses, counter: r} = await detectPose(video);
       setPoses(detectedPoses as Pose[]);
+      classifyPose(detectedPoses as Pose[]);
       // setRepetitions(r);
       setLoader(false)
-      console.log(r)
 
       if (statsRef.current) statsRef.current.end()
     }
-  }, [isModelLoaded]);
+  }, [isModelLoaded, isNeuralNetworkLoaded]);
 
   // SPACEBAR REPETITIONS FAKE
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === 'Space') {
+      /* if (event.code === 'Space') {
         const r = repetitions + 1
         console.log('space', r)
         setRepetitions(r);
-      }
+      } */
+      keyPressed(event.key)
     }
 
     window.addEventListener('keydown', handleKeyDown)
@@ -110,13 +113,21 @@ const CameraWrapper: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const loadModel = async () => {
+    const loadMoveNet = async () => {
       await loadMoveNetModel();
       setIsModelLoaded(true);
     };
 
-    loadModel();
-  }, []);
+    const loadModel = async () => {
+      const ready = await loadNeuralNetwork();
+      setIsNeuralNetworkLoaded(ready);
+    };
+
+    if (loaded) {
+      loadMoveNet();
+      loadModel()
+    }
+  }, [loaded]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -147,8 +158,6 @@ const CameraWrapper: React.FC = () => {
 
     canvas.width = webcam.video.videoWidth
     canvas.height = webcam.video.videoHeight
-
-    console.log(webcam.video.videoWidth, webcam.video.videoHeight)
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(webcam.video, 0, 0, canvas.width, canvas.height);
@@ -230,6 +239,13 @@ const CameraWrapper: React.FC = () => {
 
   return (
     <>
+      <Script
+        type='text/javascript'
+        src='https://unpkg.com/ml5@1.0.2/dist/ml5.min.js'
+        onLoad={() => {
+          setLoaded(true);
+        }}
+      ></Script>
       <div className={`${styles.camera} ${page === 'captureBody' ? styles.camera__fullscreen : ''}`}>
         <Webcam
           ref={webcamRef}

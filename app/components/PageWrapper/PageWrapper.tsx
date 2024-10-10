@@ -7,6 +7,7 @@ import { DataContext } from '@/app/contexts/DataContext';
 import { useSearchParams } from 'next/navigation';
 
 import CameraWrapper from '../CameraWrapper/CameraWrapper';
+import ModelWrapper from '../ModelWrapper/ModelWrapper';
 
 // pages
 import Welcome from '@/app/pages/Welcome/Welcome';
@@ -80,6 +81,10 @@ const PageWrapper: React.FC = () => {
       )}
 
 
+      {/* CAMERA FEEDBACK */}
+      {/* {(page === 'captureBody' || page === 'getReady' || page === 'exercise'  || page === 'exerciseSucceed' || page === 'extraRound') && (
+        <ModelWrapper />
+      )} */}
       {/* CAMERA FEEDBACK */}
       {(page === 'captureBody' || page === 'getReady' || page === 'exercise'  || page === 'exerciseSucceed' || page === 'extraRound') && (
         <CameraWrapper />

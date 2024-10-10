@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@cosmos/web": "^8.5.0",
+    "@teachablemachine/image": "^0.8.5",
+    "@teachablemachine/pose": "^0.8.6",
     "@tensorflow-models/pose-detection": "^2.1.3",
     "@tensorflow/tfjs-backend-wasm": "^4.21.0",
     "@tensorflow/tfjs-backend-webgl": "^4.21.0",
@@ -18,6 +20,7 @@
     "expo-camera": "^15.0.16",
     "next": "14.2.8",
     "react": "^18",
+    "react-camera-pro": "^1.4.0",
     "react-dom": "^18",
     "react-webcam": "^7.2.0",
     "sass": "^1.78.0",
