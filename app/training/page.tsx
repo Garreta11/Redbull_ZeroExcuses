@@ -116,8 +116,10 @@ const TrainingDataPage = () => {
       const video = containerRef.current.getElementsByTagName('video')[0] as HTMLVideoElement;
       const { poses: detectedPoses} = await detectPose(exerciseName, video);
       //setPoses(detectedPoses as Pose[]);
+      // console.log(detectedPoses)
+      console.log('Detected Poses')
+      setPoses(detectedPoses as Pose[]);
       if (detectedPoses.length > 0) {
-        setPoses(detectedPoses as Pose[]);
         const inputs = []
         for (let i = 0; i < detectedPoses[0].keypoints.length; i++) {
           const x = detectedPoses[0].keypoints[i].x
@@ -134,8 +136,8 @@ const TrainingDataPage = () => {
 
         }
 
-        if (statsRef.current) statsRef.current.end();
       }
+      if (statsRef.current) statsRef.current.end();
     }
   }, [isModelLoaded, isNeuralNetworkLoaded, exerciseName]);
 
