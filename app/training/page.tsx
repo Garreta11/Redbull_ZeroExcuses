@@ -127,7 +127,7 @@ const TrainingDataPage = () => {
         // Assuming you have a classifyPose function that returns a prediction result
         const result = await classifyPose(inputs); // Classify the first pose
   
-        if (result && result.length > 0) {
+        if (Array.isArray(result) && result.length > 0) {
           setPredictedLabel(result[0].label); // Store label in state for use
           setPredictedConfidence((Math.round(result[0].confidence * 100) / 100).toFixed(2))
 
@@ -136,7 +136,7 @@ const TrainingDataPage = () => {
         if (statsRef.current) statsRef.current.end();
       }
     }
-  }, [isModelLoaded, isNeuralNetworkLoaded]);
+  }, [isModelLoaded, isNeuralNetworkLoaded, exerciseName]);
 
   // DETECTING POSE INTERVAL
   useEffect(() => {
