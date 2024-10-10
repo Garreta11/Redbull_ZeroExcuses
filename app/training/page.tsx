@@ -4,7 +4,7 @@ import React, { useEffect,useRef, useState, useCallback } from 'react';
 import Script from 'next/script';
 import {Camera} from 'react-camera-pro';
 import { loadMoveNetModel, detectPose, posePressed, savePose, loadNeuralNetwork, classifyPose } from "@/app/utils/posedetection";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 import { CosmosButton } from "@cosmos/web/react";
 import Stats from "stats.js";
@@ -56,8 +56,9 @@ const TrainingDataPage = () => {
 
   const [poses, setPoses] = useState<Pose[]>([]);
 
-  const searchParams = useSearchParams();
-  const exerciseName = searchParams.get("exercise") || "squats";
+  // const searchParams = useSearchParams();
+  // const exerciseName = searchParams.get("exercise") || "squats";
+  const exerciseName = 'squats'
 
    // Initialize stats.js
    useEffect(() => {
